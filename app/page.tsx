@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="bg-gray-100 py-12 md:py-20 px-4 text-center">
           <div className="container mx-auto">
-            <img
+            <Image
               src="https://pbs.twimg.com/profile_images/1515322078547038209/7rbwlF8F_400x400.jpg"
               alt="Pankaj Yadav"
               className="w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto mb-6 border-4 border-blue-600 bg-slate-700"
@@ -82,7 +83,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <img
+                <Image
                   src="https://cdn.pixabay.com/photo/2020/11/01/03/08/youtube-5702765_640.jpg"
                   alt="Project 1"
                   className="w-full h-48 object-cover rounded-t-lg mb-4"
@@ -92,7 +93,7 @@ export default function Home() {
                 <Link href="/home" className='text-blue-400 '>See Here</Link>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <img
+                <Image
                   src="https://plus.unsplash.com/premium_photo-1683309567810-4d232ee83d2f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bm90ZXN8ZW58MHx8MHx8fDA%3D"
                   alt="Project 2"
                   className="w-full h-48 object-cover rounded-t-lg mb-4"
@@ -102,7 +103,7 @@ export default function Home() {
                 <Link href="/home" className='text-blue-400'>See Here</Link>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <img
+                <Image
                   src="https://img.freepik.com/free-vector/website-development-banner_33099-1687.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725840000&semt=ais_hybrid"
                   alt="Project 3"
                   className="w-full h-48 object-cover rounded-t-lg mb-4"
