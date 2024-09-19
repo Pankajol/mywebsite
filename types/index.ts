@@ -1,3 +1,5 @@
+
+import { Video as PrismaVideo } from '@prisma/client';
 export interface Video {
     id: string; // Change this to string if it needs to be a string
     title: string;
@@ -9,6 +11,7 @@ export interface Video {
     createdAt: Date;
     updatedAt: Date;
 }
+
 
 
 // export interface Video {
