@@ -9,3 +9,12 @@ export interface Video {
     createdAt: Date
     updatedAt: Date
 }
+
+// export interface Video {
+//     id: number; // Ensure this is 'number'
+//     title: string;
+//     description: string;
+//     publicId: string;
+//     createdAt: Date;
+//     updatedAt: Date;
+// }
