@@ -27,7 +27,7 @@ export default function Home() {
               Full Stack Developer | Software Engineer
             </p>
             <p className="text-sm md:text-lg text-gray-500 max-w-2xl mx-auto">
-              I’m a passionate web developer specializing in building and designing modern web applications using the latest technologies.
+              I&quot;m a passionate web developer specializing in building and designing modern web applications using the latest technologies.
               I have experience in front-end and back-end development.
             </p>
             <div className="mt-6 flex justify-center space-x-6">
