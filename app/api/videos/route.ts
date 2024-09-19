@@ -25,15 +25,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 
-// Reuse Prisma Client for serverless environments (Vercel)
+// Ensure that Prisma Client is instantiated without exporting it
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
-export const prisma = globalForPrisma.prisma || new PrismaClient();
+const prisma = globalForPrisma.prisma || new PrismaClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export async function GET(request: NextRequest) {
   try {
-    // Ensure 'createdAt' field exists in your Video model in Prisma schema
+    // Fetch videos from Prisma
     const videos = await prisma.video.findMany({
       orderBy: { createdAt: 'desc' }
     });
@@ -48,3 +48,4 @@ export async function GET(request: NextRequest) {
     await prisma.$disconnect();
   }
 }
+
