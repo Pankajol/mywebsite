@@ -19,7 +19,7 @@ const sidebarItems = [
   { href: "/home", icon: LayoutDashboardIcon, label: "Home Page" },
   { href: "/social-share", icon: Share2Icon, label: "Social Share" },
   { href: "/video-upload", icon: UploadIcon, label: "Video Upload" },
-  {href:"/my-video",icon: Video,label:"MY Videos"}
+  // {href:"/my-video",icon: Video,label:"MY Videos"}
 ];
 
 export default function AppLayout({
