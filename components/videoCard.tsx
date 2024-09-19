@@ -107,7 +107,10 @@ const VideoCard: React.FC<VideoCardProps> = ({ video, onDownload }) => {
           src={getThumbnailUrl(video.publicId)}
           alt={video.title}
           className="w-full h-full object-cover"
+          width={500}
+          height={500}
         />
+       
       )}
         <div className="absolute bottom-2 right-2 bg-base-100 bg-opacity-70 px-2 py-1 rounded-lg text-sm flex items-center">
           <Clock size={16} className="mr-1" />

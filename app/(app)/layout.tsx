@@ -74,12 +74,14 @@ export default function AppLayout({
                 <>
                   <div className="avatar">
                     <div className="w-8 h-8 rounded-full">
-                      <Image
+                      {/* <Image 
                         src={user.imageUrl}
                         alt={
                           user.username || user.emailAddresses[0].emailAddress
                         }
-                      />
+                        width={500}
+                        height={500}
+                      /> */}
                     </div>
                   </div>
                   <span className="text-sm truncate max-w-xs lg:max-w-md">
@@ -107,7 +109,7 @@ export default function AppLayout({
         <label htmlFor="sidebar-drawer" className="drawer-overlay"></label>
         <aside className="bg-base-200 w-64 h-full flex flex-col">
           <div className="flex items-center justify-center py-4">
-            <ImageIcon className="w-10 h-10 text-primary" />
+            {/* <ImageIcon className="w-10 h-10 text-primary" /> */}
           </div>
           <ul className="menu p-4 w-full text-base-content flex-grow">
             {sidebarItems.map((item) => (
