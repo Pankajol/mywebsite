@@ -128,15 +128,12 @@
 
 
 // chatgpt
-
 import { NextRequest, NextResponse } from 'next/server';
 import { v2 as cloudinary, UploadApiOptions } from 'cloudinary';
 import { PrismaClient } from '@prisma/client';
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-export const prisma = globalForPrisma.prisma || new PrismaClient();
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+// Initialize Prisma client (do not export it)
+const prisma = new PrismaClient();
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -144,30 +141,21 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// Interface for Cloudinary upload response
 interface CloudinaryUploadResult {
   public_id: string;
   version: number;
-  signature: string;
-  width: number;
-  height: number;
+  bytes: number;
   format: string;
   resource_type: string;
-  created_at: string;
-  tags: string[];
-  bytes: number;
-  type: string;
-  etag: string;
-  placeholder: boolean;
-  url: string;
   secure_url: string;
-  access_mode: string;
-  original_filename: string;
-  duration?: number; // Optional for videos
+  duration?: number;
 }
 
 // Video upload POST API
 export async function POST(request: NextRequest) {
   try {
+    // Parse form data
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
     const title = formData.get('title') as string;
@@ -178,9 +166,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File not found' }, { status: 400 });
     }
 
+    // Convert file to buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
+    // Upload to Cloudinary
     const result = await uploadWithRetry(buffer, {
       resource_type: 'video',
       folder: 'video-uploads',
@@ -188,6 +178,7 @@ export async function POST(request: NextRequest) {
       timeout: 60000,
     });
 
+    // Save video info to the database
     const video = await prisma.video.create({
       data: {
         title,
@@ -211,7 +202,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Upload function with retry logic
+// Function to upload to Cloudinary with retry logic
 async function uploadWithRetry(
   buffer: Buffer,
   options: UploadApiOptions,
@@ -241,3 +232,4 @@ async function uploadWithRetry(
   }
   throw new Error('Upload failed after retries');
 }
+
